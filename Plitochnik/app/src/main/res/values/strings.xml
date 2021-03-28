@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Plitochnik</string>
+    <string name="TotalSumString">Загальна сума</string>
+    <string name="TotalPlaceString">кількість</string>
+    <string name="TotalPacePriceString">ціна</string>
+    <string name="Vidkosy_m_p">відкоси м/п</string>
+    <string name="Vidkosy_String">Відкоси</string>
+    <string name="Vidkosy_price">ціна за м/п</string>
+    <string name="Otvory_price">ціна за шт.</string>
+    <string name="Otvory_String">Отвори</string>
+    <string name="Otvory_Shtuk">кільк. шт.</string>
+    <string name="Shodynki_String">Сходинки</string>
+    <string name="Shodynki_m_p">сходинки м/п</string>
+    <string name="Shodynki_price">ціна за м/п</string>
+    <string name="Reset">Зкинути</string>
+    <string name="Add">+</string>
+    <string name="get_total_space_menu">Розрахувати площу</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:hint="person_name"
+        android:textColor="@color/colorAccent"
+        android:gravity="end"
+        android:textSize="25sp" />
+
+
+        <TextView
+
+            android:id="@+id/total_sum"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="end"
+            android:textColor="@color/colorAccent"
+            android:hint="person_phone"
+            android:textSize="25sp"
+            android:shadowRadius="10"
+            android:background="#F0FBFF"/>
+
+
+
+</LinearLayout>

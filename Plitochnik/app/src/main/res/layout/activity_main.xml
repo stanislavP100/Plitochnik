@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".MainActivity">
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:text="@string/TotalSumString"-->
+<!--        android:textColor="@color/colorAccent"-->
+<!--        android:textSize="25sp" />-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp">
+
+    <TextView
+
+        android:id="@+id/total_sum"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:background="#F0FBFF"
+     />
+
+    <Button
+        android:id="@+id/reset_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:text="@string/Reset" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:text="@string/Add"
+        android:textSize="30sp"
+        />
+
+</LinearLayout>
+
+<!--   //////////////////////////////////// -->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+    <LinearLayout
+        android:id="@+id/linear_layout_to_add_chapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+    <EditText
+        android:id="@+id/opl"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#F0FBFF"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:inputType="text"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+         />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_to_add_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            >
+
+            <EditText
+                android:id="@+id/item_count"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="#F0FBFF"
+                android:gravity="center"
+                android:hint="@string/TotalPlaceString"
+                android:inputType="number"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/item_price"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_marginStart="20dp"
+                android:background="#F0FBFF"
+                android:hint="@string/TotalPacePriceString"
+                android:inputType="number"
+                android:textSize="25sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
