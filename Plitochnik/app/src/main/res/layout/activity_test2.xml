@@ -30,6 +30,38 @@
         android:shadowRadius="10"
         android:background="#F0FBFF"/>
 
+    <EditText
+        android:id="@+id/opl"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#F0FBFF"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:inputType="text"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/item_count"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:background="#F0FBFF"
+        android:gravity="center"
+        android:hint="@string/TotalPlaceString"
+        android:inputType="number"
+        android:textSize="25sp" />
 
-
+    <EditText
+        android:id="@+id/item_price"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:background="#F0FBFF"
+        android:hint="@string/TotalPacePriceString"
+        android:inputType="number"
+        android:textSize="25sp" />
 </LinearLayout>

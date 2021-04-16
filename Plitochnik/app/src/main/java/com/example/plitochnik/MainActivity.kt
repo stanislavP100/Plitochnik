@@ -2,22 +2,22 @@ package com.example.plitochnik
 import android.app.ActionBar
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.renderscript.ScriptGroup
 import android.text.Editable
 import android.text.InputType
+import android.text.Layout
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import androidx.annotation.RequiresApi
 import androidx.core.view.marginTop
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,30 +29,16 @@ class MainActivity : AppCompatActivity() {
     var totPlaceInt  =0
     var placePriceInt  =0
 
+    private var quantity = mutableMapOf<String, Int>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        var scr=findViewById<ScrollView>(R.id.scrollView2)
-//
-//        val btn=Button(this)
-//        btn.layoutParams=scr.layoutParams
-//        btn.text="+"
-//        btn.width=50
-//        scr.addView(btn,0)
-
-
 
         val resetButton : Button= findViewById(R.id.reset_button)
         val addButton : Button= findViewById(R.id.add_button)
-
-
-
-        fun totSum (map : Map <String, EditText>) :Int {
-
-            return totPlaceInt * placePriceInt
-        }
-
 
         item_count.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -142,14 +128,13 @@ class MainActivity : AppCompatActivity() {
         val edtt2=EditText(this)
         val edtt3=EditText(this)
 
-      //  var lp = ViewGroup.LayoutParams(600,150)
-        //  edtt.layoutParams=lp
         edtt.layoutParams=opl.layoutParams
 
         edtt.hint = "Нова стаття"
         edtt.isSingleLine=true
-          edtt.id=ViewGroup.generateViewId()
-        println(edtt.id)
+        edtt.id=ViewGroup.generateViewId()
+        edtt.textSize= 25f
+        edtt.gravity=Gravity.CENTER
         edtt.setBackgroundColor(Color.WHITE)
         edtt.inputType=InputType.TYPE_CLASS_TEXT
         linearLayoutToAddChapter.addView(edtt)
@@ -167,21 +152,80 @@ class MainActivity : AppCompatActivity() {
 
         edtt2.hint = "кількість"
         edtt2.isSingleLine=true
+        edtt2.textSize= 25f
+        edtt2.gravity=Gravity.CENTER
         edtt2.id=ViewGroup.generateViewId()
         edtt2.setBackgroundColor(Color.WHITE)
         edtt2.inputType=InputType.TYPE_CLASS_NUMBER
         linLayToaddPrice.addView(edtt2)
 
+        quantity.put(edtt2.id.toString(), 0)
+
+
+        edtt2.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            quantity.set(edtt2.id.toString(), p0.toString().toInt())
+
+                 totalSumInt+=p0.toString().toInt()
+
+
+             //   println(quantity.size.toString() + "  size")
+              //  println(edtt2.id.toString() + "  id ")
+                for(item in quantity)
+                {
+                    println("key = " + item.key+"  value = "+ item.value )
+                }
+
+                total_sum.text=(totalSumInt).toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
+
         edtt3.layoutParams=opl3.layoutParams
 
         edtt3.hint = "ціна"
+        edtt3.textSize= 25f
         edtt3.isSingleLine=true
+        edtt3.gravity=Gravity.CENTER
         edtt3.id=ViewGroup.generateViewId()
         edtt3.setBackgroundColor(Color.WHITE)
         edtt3.inputType=InputType.TYPE_CLASS_NUMBER
         linLayToaddPrice.addView(edtt3)
+        quantity.put(edtt3.id.toString(), 0)
 
+        edtt3.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
+            }
+
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                quantity.set(edtt3.id.toString(), p0.toString().toInt())
+
+                totalSumInt+=p0.toString().toInt()
+
+                for(item in quantity)
+                {
+                    println("key = " + item.key+"  value = "+ item.value )
+                }
+
+                total_sum.text=(totalSumInt).toString()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
 
         linearLayoutToAddChapter.addView(linLayToaddPrice)
     }
