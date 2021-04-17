@@ -45,12 +45,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     if (p0.toString() != ""){
                     totPlaceInt = p0.toString().toInt()
-                    totalSumInt=totSum()
+                  //  totalSumInt=totSum()
                     total_sum.text = (totalSumInt).toString()
                 }
                 else {
                         totPlaceInt=0
-                        totalSumInt=totSum()
+                     //   totalSumInt=totSum()
                         total_sum.text = (totalSumInt).toString()
                     }
             }
@@ -67,12 +67,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(p0.toString()!=""){
                 placePriceInt = p0.toString().toInt()
-                    totalSumInt=totSum()
+                 //   totalSumInt=totSum()
                 total_sum.text=(totalSumInt).toString()
                 }
                 else {
                     placePriceInt=0
-                    totalSumInt=totSum()
+                //    totalSumInt=totSum()
                     total_sum.text=(totalSumInt).toString()
                 }
             }
@@ -104,10 +104,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun totSum () :Int {
-        totalSumInt =totPlaceInt * placePriceInt
-        return totalSumInt
-    }
+//    fun totSum () :Int {
+//        totalSumInt =totPlaceInt * placePriceInt
+//        return totalSumInt
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -162,26 +162,26 @@ class MainActivity : AppCompatActivity() {
         quantity.put(edtt2.id.toString(), 0)
 
 
-        edtt2.addTextChangedListener(object :TextWatcher{
+        edtt2.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            quantity.set(edtt2.id.toString(), p0.toString().toInt())
+                quantity.set(edtt2.id.toString(), p0.toString().toInt())
 
-                 totalSumInt+=p0.toString().toInt()
+                  totalSumInt =0
 
+                for (i in 2..quantity.size step 3) {
 
-             //   println(quantity.size.toString() + "  size")
-              //  println(edtt2.id.toString() + "  id ")
-                for(item in quantity)
-                {
-                    println("key = " + item.key+"  value = "+ item.value )
+                    println("price " + i.toString() + " = " + quantity[i.toString()]!!.toString())
+                    println("count "+ (i+1).toString()+" = "+quantity[(i+1).toString()]!!.toString())
+                    totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+                    println("totSum = "+ totalSumInt)
                 }
 
-                total_sum.text=(totalSumInt).toString()
+                total_sum.text = (totalSumInt).toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -211,14 +211,17 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 quantity.set(edtt3.id.toString(), p0.toString().toInt())
 
-                totalSumInt+=p0.toString().toInt()
+                totalSumInt=0
 
-                for(item in quantity)
-                {
-                    println("key = " + item.key+"  value = "+ item.value )
+                for (i in 2..quantity.size step 3) {
+
+                    println("price " + i.toString() + " = " + quantity[i.toString()]!!.toString())
+                    println("count "+ (i+1).toString()+" = "+quantity[(i+1).toString()]!!.toString())
+                    totalSumInt+= quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+                    println("totSum = "+ totalSumInt)
                 }
 
-                total_sum.text=(totalSumInt).toString()
+                total_sum.text = (totalSumInt).toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
