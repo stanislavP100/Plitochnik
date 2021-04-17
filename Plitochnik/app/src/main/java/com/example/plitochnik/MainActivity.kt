@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     private var quantity = mutableMapOf<String, Int>()
 
+    var quantitycounter =0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +47,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     if (p0.toString() != ""){
                     totPlaceInt = p0.toString().toInt()
-                  //  totalSumInt=totSum()
+                    totalSumInt=totPlaceInt* placePriceInt
                     total_sum.text = (totalSumInt).toString()
                 }
                 else {
                         totPlaceInt=0
-                     //   totalSumInt=totSum()
+                        totalSumInt=totPlaceInt* placePriceInt
                         total_sum.text = (totalSumInt).toString()
                     }
             }
@@ -67,12 +69,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(p0.toString()!=""){
                 placePriceInt = p0.toString().toInt()
-                 //   totalSumInt=totSum()
+                    totalSumInt=totPlaceInt* placePriceInt
                 total_sum.text=(totalSumInt).toString()
                 }
                 else {
                     placePriceInt=0
-                //    totalSumInt=totSum()
+                    totalSumInt=totPlaceInt* placePriceInt
                     total_sum.text=(totalSumInt).toString()
                 }
             }
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
 
         addButton.setOnClickListener {
           chapterAdd()
+
         }
 
 
@@ -119,6 +122,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun chapterAdd (){
+quantitycounter+=3;
 
         val opl= findViewById<EditText>(R.id.opl)
 
@@ -169,19 +173,38 @@ class MainActivity : AppCompatActivity() {
 
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if (p0.toString() != ""){
+
+
                 quantity.set(edtt2.id.toString(), p0.toString().toInt())
 
                   totalSumInt =0
 
-                for (i in 2..quantity.size step 3) {
+                for (i in 2..quantitycounter step 3) {
 
-                    println("price " + i.toString() + " = " + quantity[i.toString()]!!.toString())
-                    println("count "+ (i+1).toString()+" = "+quantity[(i+1).toString()]!!.toString())
                     totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
-                    println("totSum = "+ totalSumInt)
+
                 }
 
-                total_sum.text = (totalSumInt).toString()
+                    total_sum.text = (totalSumInt+(totPlaceInt* placePriceInt)).toString()
+
+                  //  total_sum.text = (totalSumInt).toString()
+                }
+                else {
+
+                    quantity.set(edtt2.id.toString(), 0)
+
+                    totalSumInt =0
+
+                    for (i in 2..quantitycounter step 3) {
+
+                        totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                    }
+
+                    total_sum.text = (totalSumInt+(totPlaceInt* placePriceInt)).toString()
+                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -202,26 +225,44 @@ class MainActivity : AppCompatActivity() {
         linLayToaddPrice.addView(edtt3)
         quantity.put(edtt3.id.toString(), 0)
 
-        edtt3.addTextChangedListener(object :TextWatcher{
+        edtt3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                quantity.set(edtt3.id.toString(), p0.toString().toInt())
 
-                totalSumInt=0
+                if (p0.toString() != "") {
+                    quantity.set(edtt3.id.toString(), p0.toString().toInt())
 
-                for (i in 2..quantity.size step 3) {
+                    totalSumInt = 0
 
-                    println("price " + i.toString() + " = " + quantity[i.toString()]!!.toString())
-                    println("count "+ (i+1).toString()+" = "+quantity[(i+1).toString()]!!.toString())
-                    totalSumInt+= quantity[i.toString()]!! * quantity[(i+1).toString()]!!
-                    println("totSum = "+ totalSumInt)
+                    for (i in 2..quantitycounter step 3) {
+//                        println("size  " + quantity.size)
+//                        println("price " + i.toString() + " = " + quantity[i.toString()]!!.toString())
+//                        println("count " + (i + 1).toString() + " = " + quantity[(i + 1).toString()]!!.toString())
+                        totalSumInt += quantity[i.toString()]!! * quantity[(i + 1).toString()]!!
+                       // println("totSum = " + totalSumInt)
+                    }
+
+                    total_sum.text = (totalSumInt+(totPlaceInt* placePriceInt)).toString()
+                }
+                else {
+
+                    quantity.set(edtt3.id.toString(), 0)
+
+                    totalSumInt =0
+
+                    for (i in 2..quantitycounter step 3) {
+
+                        totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                    }
+
+                    total_sum.text = (totalSumInt+(totPlaceInt* placePriceInt)).toString()
                 }
 
-                total_sum.text = (totalSumInt).toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
