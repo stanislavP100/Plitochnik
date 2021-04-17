@@ -45,14 +45,25 @@ class MainActivity : AppCompatActivity() {
         item_count.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                totalSumInt =0
                     if (p0.toString() != ""){
                     totPlaceInt = p0.toString().toInt()
-                    totalSumInt=totPlaceInt* placePriceInt
+                        for (i in 2..quantitycounter step 3) {
+
+                            totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                        }
+                    totalSumInt+=totPlaceInt* placePriceInt
                     total_sum.text = (totalSumInt).toString()
                 }
                 else {
                         totPlaceInt=0
-                        totalSumInt=totPlaceInt* placePriceInt
+                        for (i in 2..quantitycounter step 3) {
+
+                            totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                        }
+                        totalSumInt+=totPlaceInt* placePriceInt
                         total_sum.text = (totalSumInt).toString()
                     }
             }
@@ -67,14 +78,25 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                totalSumInt =0
                 if(p0.toString()!=""){
                 placePriceInt = p0.toString().toInt()
-                    totalSumInt=totPlaceInt* placePriceInt
+                    for (i in 2..quantitycounter step 3) {
+
+                        totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                    }
+                    totalSumInt+=totPlaceInt* placePriceInt
                 total_sum.text=(totalSumInt).toString()
                 }
                 else {
                     placePriceInt=0
-                    totalSumInt=totPlaceInt* placePriceInt
+                    for (i in 2..quantitycounter step 3) {
+
+                        totalSumInt += quantity[i.toString()]!! * quantity[(i+1).toString()]!!
+
+                    }
+                    totalSumInt+=totPlaceInt* placePriceInt
                     total_sum.text=(totalSumInt).toString()
                 }
             }
